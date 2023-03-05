@@ -5,9 +5,10 @@ import "sync"
 // GENERATED FILE DO NOT MODIFY DIRECTLY
 
 var (
-	once      sync.Once
-	mapped    map[string]Country
-	countries = []Country{
+	once       sync.Once
+	codeMapped map[string]Country
+	nameMapped map[string]Country
+	countries  = []Country{
 		{
 			Code: "AF",
 			Name: "Afghanistan",
@@ -3232,6 +3233,8 @@ func GetCountryByCode(code string) (c Country, found bool) {
 	return
 }
 
+// GetCountry returns a single Country that matches the country
+// name passed and whether it was found
 func GetCountryByName(name string) (c Country, found bool) {
 	c, found = nameMapped[name]
 	return
