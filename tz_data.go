@@ -3208,10 +3208,12 @@ func init() {
 	// for below functions.
 
 	once.Do(func() {
-		mapped = make(map[string]Country)
+		codeMapped = make(map[string]Country)
+		nameMapped = make(map[string]Country)
 
 		for i := 0; i < len(countries); i++ {
-			mapped[countries[i].Code] = countries[i]
+			codeMapped[countries[i].Code] = countries[i]
+			nameMapped[countries[i].Name] = countries[i]
 		}
 	})
 }
@@ -3226,11 +3228,11 @@ func GetCountries() []Country {
 // GetCountry returns a single Country that matches the country
 // code passed and whether it was found
 func GetCountryByCode(code string) (c Country, found bool) {
-	c, found = mapped[code]
+	c, found = codeMapped[code]
 	return
 }
 
-// func GetCountryByName(code string) (c Country, found bool) {
-// 	c, found = mapped[code]
-// 	return
-// }
+func GetCountryByName(name string) (c Country, found bool) {
+	c, found = nameMapped[name]
+	return
+}
